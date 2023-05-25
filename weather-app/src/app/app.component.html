@@ -1,0 +1,84 @@
+<div class="bg-[#ffebe8] h-screen py-32">
+  <div class="w-[550px] bg-white mx-auto rounded-lg shadow-xl ">
+    <div class="text-center py-2">
+      <span class="text-3xl uppercase font-thin">Weather app</span>
+      <hr>
+    </div>
+    <div class="mt-2 text-center">
+      <form [formGroup]="weatherData" (ngSubmit)="displayWeatherData(weatherData.value)">
+        <input type="search" class="border p-2 w-[400px] rounded-tl-lg rounded-bl-lg outline-none px-4"
+          placeholder="Search weather by cityName.." autofocus formControlName="cityName">
+        <button class="p-2 px-4 text-white rounded-tr-lg rounded-br-lg bg-gradient-to-r from-cyan-500 to-cyan-200"
+          [disabled]="weatherData.invalid">Search</button>
+      </form>
+    </div>
+    <ul>
+      <li class="text-2xl text-center mt-4 underline">Weather information of:<span
+          class="text-red-400 mx-2">{{WeatherAllData.name}}</span></li>
+    </ul>
+    <div class=" mt-2 " *ngFor="let data of WeatherAllData.weather">
+      <div class="p-2 w-full text-center ">
+        <span class="text-2xl capitalize font-light">{{data.description}}</span>
+        <img src="http://openweathermap.org/img/wn/{{data.icon}}@2x.png" alt="" class="inline text-blue-600">
+          <span class=" inline font-thin text-2xl mt-2">{{temp |
+          number:'1.2-2'}}</span>°C
+        <img [src]="imgScaterred" alt="" class="h-32 w-full bg-cover">
+      </div>
+    </div>
+    <!-- <ul *ngFor="let data1 of WeatherAllData.weather">
+        <li>{{data1 | json}}</li>
+      </ul> -->
+    <div class="flex p-2 border  bg-gradient-to-r from-cyan-500 to-cyan-200 justify-between pb-4">
+      <div class=" text-center">
+        <ul>
+          <li class="text-xl font-thin">Temperature:</li><span class="text-red-500 font-bold mt-2">{{temp |
+            number:'1.2-2'}}</span>°C
+          <li class="text-xl mt-4 font-thin">Min-Temperature:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.main.temp_min}}</span>°C
+          <li class="text-xl mt-4 font-thin">Max-Temperature:</li><span
+            class="text-red-500 font-bold">{{WeatherAllData.main.temp_max}}</span>°C
+          <li class="text-xl mt-4 font-thin">Feel-like:</li><span
+            class="text-red-500 font-bold">{{WeatherAllData.main.feels_like}}</span>°C
+
+
+        </ul>
+      </div>
+      <div class=" text-center mx-4 ">
+        <ul>
+          <li class="text-xl font-thin">Pressure:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.main.pressure}}</span>
+          <li class="text-xl mt-4 font-thin">Humidity:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.main.humidity}}</span>
+          <li class="text-xl mt-4 font-thin">Wind Speed:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.wind.speed}}</span>
+          <li class="text-xl mt-4 font-thin">Visibility:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.visibility}}</span>
+
+
+        </ul>
+      </div>
+      <div class=" text-center mx-4">
+        <ul>
+          <li class="text-xl font-thin">SunRise:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.sys.sunrise}}</span>
+          <li class="text-xl mt-4 font-thin">SunSet:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.sys.sunset}}</span>
+          <li class="text-xl mt-4 font-thin">Longitute:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.coord.lon}}</span>
+          <li class="text-xl mt-4 font-thin">Latitute:</li><span
+            class="text-red-500 font-bold mt-2">{{WeatherAllData.coord.lat}}</span>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+  </div>
+  <!-- <li>{{WeatherAllData | json}}</li> -->
+</div>
+<!-- <div class="flex">
+  <div class="w-1/2 h-12 bg-gradient-to-r from-cyan-500 to-cyan-200"></div>
+<div class="w-1/2 h-12 bg-gradient-to-r from-cyan-200 to-cyan-500   "></div>
+</div> -->
+<img src="" alt="">
